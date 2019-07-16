@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.scss';
+import { Route, BrowserRouter as Router, Switch  } from "react-router-dom";
+//import Header from './components/Header';
+import Movie from './components/Movie.js';
+import MovieForm from './components/MovieForm.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        {/*<Header/>*/}
+        <Route render={({location}) => (
+          <TransitionGroup>
+              <CSSTransition
+              key={location.key}
+              timeout={450}
+              classNames="fade"
+              >
+                <Switch>
+                    <Route path="/" exact component={Movie} />
+                    <Route path="/add-movie" exact component={MovieForm} />
+                </Switch>
+              </CSSTransition>
+          </TransitionGroup>
+        )} />
+      </Router>
+    );
+  }
+  
 }
 
 export default App;
