@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/App.scss';
 import { Route, BrowserRouter as Router, Switch  } from "react-router-dom";
-//import Header from './components/Header';
+import Header from './components/Header';
 import Movie from './components/Movie.js';
 import MovieForm from './components/MovieForm.js';
 
@@ -15,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        {/*<Header/>*/}
+        <Header/>
         <Route render={({location}) => (
           <TransitionGroup>
               <CSSTransition
